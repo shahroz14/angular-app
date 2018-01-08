@@ -1,0 +1,8 @@
+p {
+    background-color: rgb(247, 247, 186);
+}
+
+.selected {
+    background-color: rgb(50, 111, 161);
+    color: white;
+}

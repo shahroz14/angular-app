@@ -1,0 +1,14 @@
+<div class="row" style="margin-top: 10px">
+  <div class="col-lg-6">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+      {{hero.name}} </li>
+
+    </ul>
+  </div>
+
+  <div class="col-lg-6">
+    <app-hero-detail></app-hero-detail>
+  </div>
+
+</div>

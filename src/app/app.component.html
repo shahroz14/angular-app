@@ -1,0 +1,108 @@
+<div class="container">
+  <!-- <div class="row">
+    <h1> Tour of Heroes </h1>
+  </div> -->
+
+  <input [(ngModel)]="selected" [typeahead]="statesComplex" typeaheadOptionField="name" typeaheadGroupField="region" class="form-control">
+
+  <pre class="card card-block card-header">Model: {{selected | json}}</pre>
+
+  <h3>Async Data</h3>
+  <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>
+  <input [(ngModel)]="asyncSelected"
+        [typeahead]="dataSource"
+        (typeaheadLoading)="changeTypeaheadLoading($event)" 
+        (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+        (typeaheadOnSelect)="typeaheadOnSelect($event)" 
+        [typeaheadOptionsLimit]="7" 
+        (typeaheadOnBlur)="blur($event)"
+        typeaheadOptionField="username" 
+        (input)="onSearchChange()"
+        typeahead-select-on-blur="true"
+        placeholder="Locations loaded with timeout"
+        class="form-control">
+  <div *ngIf="typeaheadLoading===true">Loading</div>
+  <div *ngIf="typeaheadNoResults===true">&#10060; No Results Found</div>
+
+
+
+  <form [formGroup]="form">
+    <input formControlName="state" 
+    [typeahead]="states" 
+    [typeaheadOptionsLimit]="4" 
+    [typeaheadMinLength]="3" 
+    placeholder="Typeahead inside a form"
+      class="form-control">
+  </form>
+
+  <form [formGroup]="myForm" novalidate>
+    <fieldset formGroupName="name">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+      </div>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName">
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email">
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Language</label>
+      <select class="form-control" formControlName="language">
+        <option value="hin">Hindi</option>
+        <option value="eng">English</option>
+        <option value="ur">Urdu</option>
+      </select>
+    </div>
+  </form>
+
+
+  <!-- <input type="text" mwlFlatpickr [nextArrow]="'>'" [maxDate]="maxDate" [(ngModel)]="selectedDate" [altInput]="true" [convertModelValue]="true">
+  <input type="text" mwlFlatpickr  [altInput]="false" [convertModelValue]="true">
+  <input type="text" mwlFlatpickr [(ngModel)]="anotherDate" [mode]="'range'" [altInputClass]="'red'"  [convertModelValue]="true"> -->
+
+
+
+  <h1>Heading 1</h1>
+  <div class="row">
+
+    <div class="col-sm-4">
+      <h6>Start Date</h6>
+      <ng2-flatpickr [config]="exampleOptions" [(ngModel)]="moment"></ng2-flatpickr>
+    </div>
+    <div class="col-sm-4">
+      <h6>End Date</h6>
+      <ng2-flatpickr [config]="exampleOptions" [(ngModel)]="moment"></ng2-flatpickr>
+    </div>
+  </div>
+
+
+
+
+  <div class="row" style="margin-top: 10px">
+    <div class="col-sm-12">
+      <button class="btn btn-primary" (click)="data()" routerLink="/dashboard">
+        Dashboard
+      </button>
+      <button class="btn btn-primary" routerLink="/heroes">
+        Heroes
+      </button>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+
+</div>

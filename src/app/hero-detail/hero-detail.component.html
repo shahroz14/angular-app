@@ -1,0 +1,28 @@
+<div class="row input-group">
+  <h3> iTunes Search</h3>
+</div>
+<div id="custom-search-input">
+  <div class="input-group col-md-12">
+    <input type="text" class="  search-query form-control" placeholder="Search" [(ngModel)]="term" />
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="button" (click)="search(term)">
+        <span class=" glyphicon glyphicon-search"></span>
+      </button>
+    </span>
+  </div>
+</div>
+
+<br>
+<p *ngIf="searchService.loading"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</p>
+<div class="card card-block">
+  <ul class="list-group">
+    <li hover class="list-group-item" *ngFor="let track of searchService.results">
+      <p>{{track.username}}</p> 
+      <div class="detail" [style.display]="'none'"> 
+        <h6 >Genre:  {{track.primaryGenreName}}</h6>
+        <h6 >Artist:  {{track.artistName}}</h6>
+        <h6 >Collection:  {{track.collectionCensoredName}}</h6>
+      </div>
+    </li>
+  </ul>
+</div>
